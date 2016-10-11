@@ -1,0 +1,26 @@
+#u110
+{
+	-pie-box-shadow: 6px 6px 8px #7F7F7F;
+	box-shadow: 6px 6px 8px rgba(0,0,0,0.5);
+	background-color: #350B0C;
+}
+
+#buttonu345
+{
+	-webkit-transition-duration: 1s;
+	-webkit-transition-delay: 0s;
+	-webkit-transition-timing-function: ease;
+	transition-duration: 1s;
+	transition-delay: 0s;
+	transition-timing-function: ease;
+	background-image: url("../images/blank.gif");
+	border-width: 0px;
+	background-color: #000000;
+}
+
+#u123,#u346,#u348-4
+{
+	display: block;
+	vertical-align: top;
+}
+

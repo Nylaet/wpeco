@@ -1,0 +1,61 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html class="js html" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:compositions="http://xmlns.jcp.org/jsf/composite/compositions"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>WPEco</title>
+        <h:outputStylesheet library="css" name="index.css" />
+        <h:outputStylesheet library="css" name="master-a.css" />
+        <h:outputStylesheet library="css" name="site_global.css" />
+        <h:outputStylesheet library="css" name="buttons.css" />
+    </h:head>
+    <h:body>
+        <div class="clearfix borderbox" id="page"><!-- group -->
+            <div class="shadow" id="u110"><!-- simple frame --></div>
+            <img id="u123" alt="" src="resources/images/wplogo-black1-u123.png" data-image-width="184"/><!-- rasterized frame -->
+            <h:form>
+                <h:commandLink action="oneDay.xhtml?faces-redirect=true">
+                    <div class="Button transition clearfix" id="buttonu345"><!-- container box -->
+                        <img class="grpelem" id="u346" alt="" width="31" height="31" src="resources/images/calc-red-u346.png"/><!-- rasterized frame -->
+                        <img class="grpelem" id="u348-4" alt="калькулятор" width="168" height="31" src="resources/images/u348-4.png"/><!-- rasterized frame -->
+                    </div>
+                </h:commandLink>
+
+                <div id="input_form" style="position: absolute;left:33%;top: 30px;">
+                    <h:panelGrid columns="2" style="background-color: transparent "  >
+                        <h:outputText value="Площадь отапливаемого помещения " style="color: white;margin: 3px;" />
+                        <h:inputText value="#{indexController.squareHome}" style="margin: 3px;background-color: #202020;color: white;"/>
+                        <h:outputText value="Высота потолка отапливаемого помещения " style="color: white;margin: 3px;" />
+                        <h:inputText value="#{indexController.heightHome}" style="margin: 3px;background-color: #202020;color: white;" />
+                        <h:outputText value="Необходимая температура отапливаемого помещения " style="color: white;margin: 3px;" />
+                        <h:inputText value="#{indexController.needInsideTemperature}" style="margin: 3px;background-color: #202020;color: white;" />
+                    </h:panelGrid>
+                    <p:commandLink  actionListener="#{indexController.calculateHeatSeason()}" update="@all" style="margin: auto">
+                        <div class="Button transition clearfix colelem" id="buttonu394"><!-- container box -->
+                            <img class="grpelem" id="u396" alt="" width="31" height="31" src="resources/images/calc-red-u346.png"/><!-- rasterized frame -->
+                            <img class="grpelem" id="u395-4" alt="рассчитать" width="168" height="31" src="resources/images/u395-4.png"/><!-- rasterized frame -->
+                        </div>
+                    </p:commandLink>
+                </div>
+                <div id="output" rendered="#{indexController.outputIsReady}" style=" top: 130px; position: absolute; left: 30%; background-color: #202020; border: none;   width: 50%;">
+                    <p:carousel firstVisible="0" numVisible="1"  circular="true" var="MonthModel" value="#{indexController.monthViewModels}">
+                        <div style="width: 100%">
+                            <h:panelGrid columns="1">
+                                <h:outputText value="#{MonthModel.modelName}" />
+                                <h:outputText value="Максимальная температура #{MonthModel.tempStart}" ><f:convertNumber minFractionDigits="2" /></h:outputText>
+                                <h:outputText value="Минимальная температура #{MonthModel.tempEnd}" ><f:convertNumber minFractionDigits="1" /></h:outputText>
+                                <h:outputText value="Израсходовано топлива в кг. #{MonthModel.summFuelConsumition}" > <f:convertNumber minFractionDigits="1" /> </h:outputText>
+                            </h:panelGrid>
+                            <p:chart type="line" model="#{MonthModel.temperature}" style="width: 600px;min-height: 300px" />
+                        </div>
+                    </p:carousel>
+                </div>
+            </h:form>
+            <div class="verticalspacer"></div>
+        </div>
+    </h:body>
+</html>
+

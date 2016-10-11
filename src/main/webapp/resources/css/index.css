@@ -1,0 +1,109 @@
+.version.index /* version checker */
+{
+	color: #000011;
+	background-color: #8B0088;
+}
+
+#muse_css_mq
+{
+	background-color: #FFFFFF;
+}
+
+#page
+{
+	z-index: 1;
+	min-height: 0px;
+	background-image: none;
+	border-width: 0px;
+	border-color: #000000;
+	background-color: transparent;
+	padding-bottom: 500px;
+	width: 100%;
+	max-width: 960px;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+#u110
+{
+	z-index: 2;
+	height: 1696px;
+	position: fixed;
+	top: 0px;
+	left: 0px;
+	width: 25%;
+	max-width: 240px;
+}
+
+#u123
+{
+	z-index: 3;
+	position: fixed;
+	top: 3px;
+	left: 28px;
+	width: 19.17%;
+	max-width: 184px;
+}
+
+#buttonu345
+{
+	z-index: 5;
+	width: 240px;
+	position: fixed;
+	top: 87px;
+	left: 0px;
+}
+
+#buttonu345.ButtonSelected
+{
+	width: 240px;
+	min-height: 0px;
+	margin: 0px;
+}
+
+#u346
+{
+	z-index: 6;
+	margin-bottom: -2px;
+	position: relative;
+	margin-right: -10000px;
+	margin-top: 3px;
+	left: 19px;
+}
+
+#u348-4
+{
+	z-index: 8;
+	margin-bottom: -2px;
+	position: relative;
+	margin-right: -10000px;
+	margin-top: 3px;
+	left: 55px;
+}
+
+.html
+{
+	background-color: #202020;
+}
+
+body
+{
+	position: relative;
+	min-width: 320px;
+}
+
+.ui-widget-content{
+    border: none!important;
+    background: none!important;
+    color: white;
+}
+
+.ui-widget-header{
+    background: transparent!important;
+    border: none!important;
+}
+
+.ui-carousel-dropdown{
+    visibility: hidden;
+}
+

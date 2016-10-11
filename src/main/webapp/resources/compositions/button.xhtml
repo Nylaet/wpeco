@@ -1,0 +1,22 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:cc="http://xmlns.jcp.org/jsf/composite"
+      xmlns:p="http://primefaces.org/ui">
+
+    <!-- INTERFACE -->
+    <cc:interface>
+        <cc:attribute name="destination" />
+        <cc:attribute name="update" default="@all" />
+    </cc:interface>
+
+    <!-- IMPLEMENTATION -->
+    <cc:implementation>
+        <p:commandLink  actionListener="#{cc.attrs.destination}" update="#{cc.attrs.update}" style="margin: auto">
+            <div class="Button transition clearfix colelem" id="buttonu394"><!-- container box -->
+                <img class="grpelem" id="u396" alt="" width="31" height="31" src="resources/images/calc-red-u346.png"/><!-- rasterized frame -->
+                <img class="grpelem" id="u395-4" alt="рассчитать" width="168" height="31" src="resources/images/u395-4.png"/><!-- rasterized frame -->
+            </div>
+        </p:commandLink>
+    </cc:implementation>
+</html>
