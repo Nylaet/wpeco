@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package net.wildpark.wpeco.controllers;
 
 import java.io.Serializable;
@@ -12,15 +7,10 @@ import java.util.Calendar;
 import java.util.List;
 import java.util.Random;
 import javax.inject.Named;
-import javax.enterprise.context.ApplicationScoped;
 import javax.enterprise.context.SessionScoped;
 import net.wildpark.wpeco.support.DayViewModel;
 import net.wildpark.wpeco.support.MonthViewModel;
 
-/**
- *
- * @author Panker-RDP
- */
 @Named(value = "indexController")
 @SessionScoped
 public class IndexController implements Serializable {

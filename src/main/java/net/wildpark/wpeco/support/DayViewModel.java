@@ -5,7 +5,6 @@
  */
 package net.wildpark.wpeco.support;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
@@ -18,10 +17,6 @@ import org.primefaces.model.chart.ChartModel;
 import org.primefaces.model.chart.LineChartModel;
 import org.primefaces.model.chart.LineChartSeries;
 
-/**
- *
- * @author Panker-RDP
- */
 public class DayViewModel {
 
     private Calendar calendar = Calendar.getInstance();
