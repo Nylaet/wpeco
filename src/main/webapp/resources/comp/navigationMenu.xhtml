@@ -1,0 +1,68 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:cc="http://xmlns.jcp.org/jsf/composite"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+
+    <!-- INTERFACE -->
+    <cc:interface>
+        <cc:attribute name="activeIndex" default="null" /> 
+    </cc:interface>
+
+    <!-- IMPLEMENTATION -->
+    <cc:implementation>
+        <h:outputStylesheet value="../resources/css/primefaces_remaster.css"/>
+        <img id="u123" alt="" src="resources/images/WPlogo-black1.png" data-image-width="184"/>
+        <div class="shadow" id="u110">
+            <p:accordionPanel id="navMenu" activeIndex="#{cc.attrs.activeIndex}" style="top:100px;left:15px;position: relative;width: 200px;">
+
+                <p:tab>
+                    <f:facet name="title">
+                        <h:outputText value="Эмулятор" styleClass="accordionTitle"  />
+                    </f:facet>
+                    <h:form>
+                        <h:panelGrid columns="1" style="width: 100%;">
+
+
+                            <h:commandLink action="index.xhtml?faces-redirect=true" styleClass="commandLink" >
+
+                                <h:outputText value="Сезон" style="width: 100%"/>
+
+                            </h:commandLink>
+                            <h:commandLink action="oneDay.xhtml?faces-redirect=true" styleClass="commandLink">
+
+                                <h:outputText value="Один день"/>
+
+                            </h:commandLink>  
+
+                        </h:panelGrid>
+                    </h:form>
+                </p:tab>
+                <p:tab >
+                    <f:facet name="title">
+                        <h:outputText value="SNMP" styleClass="accordionTitle" />
+                    </f:facet>
+                    <h:form>
+                        <h:panelGrid columns="1">
+
+                            <h:commandLink action="addClient.xhtml?faces-redirect=true" styleClass="commandLink">
+
+                                <h:outputText value="Добавить"/>
+
+                            </h:commandLink>
+                            <h:commandLink action="viewClient.xhtml?faces-redirect=true" styleClass="commandLink">
+
+                                <h:outputText value="Просмотр"/>
+
+                            </h:commandLink>
+
+                        </h:panelGrid>
+                    </h:form>
+                </p:tab>                
+            </p:accordionPanel>   
+
+        </div>
+    </cc:implementation>
+</html>

@@ -1,0 +1,35 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html class="js html" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:comp="http://xmlns.jcp.org/jsf/composite/comp"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <comp:head/>
+    </h:head>
+    <h:body>
+        <div class="clearfix borderbox" id="page">
+            <comp:navigationMenu activeIndex="1" />
+
+            <div id="viewPort" style="position: relative;width: 75%;left: 25%;top:100px;color: white;text-align: center;">
+                <h:form>                                                  
+                    <p:carousel circular="true" numVisible="1" var="rsp" value="#{viewClientController.rsps}">
+                        <p:poll interval="60" update="info" />
+                        <h:panelGrid columns="2" id="info">
+                            <f:facet name="header">
+                                <h:outputText value="#{rsp.title} #{rsp.snmpClient.size()} датчиков" style="margin: 10px;padding-bottom: 5px;font-size: larger;"/>
+                            </f:facet>
+                            <p:dataList value="#{rsp.snmpClient}" var="client">                                
+                                <p:chart id="chart" type="line" model="#{viewClientController.getClientChart(client)}" style="width: 300px;height: 150px;" styleClass="chart" />                            
+                            </p:dataList>
+                        </h:panelGrid>
+                    </p:carousel>
+                </h:form>
+            </div>
+            <div class="verticalspacer"></div>
+        </div>
+    </h:body>
+</html>
+

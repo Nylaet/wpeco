@@ -1,0 +1,106 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html class="js html" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:comp="http://xmlns.jcp.org/jsf/composite/comp"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+    <h:head>
+        <comp:head />
+    </h:head>
+    <h:body>
+        <div class="clearfix borderbox" id="page">
+            <comp:navigationMenu activeIndex="1" />
+            <div class="verticalspacer"></div>
+            <div id="viewPort" style="position: relative;width: 75%;left: 10%;top:100px;color: white;text-align: center;">
+                <h:form id="inputForm">
+                    <h:panelGrid columns="1" >
+                        <h:outputText value="Добавление единицы мониторинга" />
+                        <h:panelGrid columns="2" style="text-align: left;width: 100%;border: 1px solid white;" >
+                            <h:outputText value="Название: " />
+                            <h:inputText value="#{addClient.created.title}" style="width: 100%;background-color: gray;" />
+                            <h:outputText value="IP адрес/Доменное имя: " />
+                            <h:inputText value="#{addClient.created.address}" style="width: 100%;background-color: gray;" />
+                            <h:outputText value="Порт: " />
+                            <h:inputText value="#{addClient.created.port}" style="width: 100%;background-color: gray;" />
+                        </h:panelGrid>
+                        <p:dataTable var="client" value="#{addClient.snmpcs}" editable="true">
+                            <p:column headerText="Имя датчика">
+                                <p:cellEditor>
+                                    <f:facet name="output"><h:outputText value="#{client.name}"/></f:facet>
+                                    <f:facet name="input"><h:inputText value="#{client.name}"/></f:facet>
+                                </p:cellEditor>
+                            </p:column>
+                            <p:column headerText="OID">
+                                <p:cellEditor>
+                                    <f:facet name="output"><h:outputText value="#{client.oid}"/></f:facet>
+                                    <f:facet name="input"><h:inputText value="#{client.oid}"/></f:facet>
+                                </p:cellEditor>
+                            </p:column>
+                            <p:column style="width: 32px">
+                                <p:rowEditor />
+                            </p:column>
+                            <p:column>
+                                <h:commandButton value="Удалить датчик" action="#{addClient.SnmpClient()}" style="margin: 5px;width: 150px;" />
+                            </p:column>                            
+                        </p:dataTable>
+                        <h:panelGrid columns="3" style="width: 100%;">
+                            <h:commandButton value="Добавить датчик" action="#{addClient.addSnmpClient()}" style="margin: 5px; width: 150px;" />
+                            <h:commandButton value="Сохранить" action="#{addClient.save()}" style="margin: 5px;width: 150px;" />
+                            <h:commandButton value="Отменить" action="addClient.xhtml?faces-redirect=true" style="margin: 5px;width: 150px;" />
+                        </h:panelGrid>
+                    </h:panelGrid>
+                    <h:panelGrid columns="1" style="margin-top: 20px;" >
+                        <h:outputText value="Изменение единиц мониторинга" />
+                        <c:forEach var="rsp" items="#{addClient.RSPs}">
+                            <p:panel header="#{rsp.title}" toggleable="true" collapsed="true">
+                                <f:facet name="header">
+                                    <h:outputText value="#{rsp.title} #{rsp.snmpClient.size()} датчиков" style="color: white" />
+                                </f:facet>
+                                <h:panelGrid columns="2" style="text-align: left;width: 100%;border: 1px solid white;" >
+                                    <h:outputText value="Название: " />
+                                    <h:inputText value="#{rsp.title}" style="width: 100%;background-color: gray;" />
+                                    <h:outputText value="IP адрес/Доменное имя: " />
+                                    <h:inputText value="#{rsp.address}" style="width: 100%;background-color: gray;" />
+                                    <h:outputText value="Порт: " />
+                                    <h:inputText value="#{rsp.port}" style="width: 100%;background-color: gray;" />
+                                </h:panelGrid>
+                                <p:dataTable var="client" value="#{rsp.snmpClient}" editable="true">
+                                    <p:column headerText="Имя датчика">
+                                        <p:cellEditor>
+                                            <f:facet name="output"><h:outputText value="#{client.name}"/></f:facet>
+                                            <f:facet name="input"><h:inputText value="#{client.name}"/></f:facet>
+                                        </p:cellEditor>
+                                    </p:column>
+                                    <p:column headerText="OID">
+                                        <p:cellEditor>
+                                            <f:facet name="output"><h:outputText value="#{client.oid}"/></f:facet>
+                                            <f:facet name="input"><h:inputText value="#{client.oid}"/></f:facet>
+                                        </p:cellEditor>
+                                    </p:column>
+                                    <p:column style="width: 32px">
+                                        <p:rowEditor />
+                                    </p:column>
+                                    <p:column>
+                                        <h:commandButton value="Удалить датчик" action="#{rsp.removeSnmpClient(client)}" style="margin: 5px;width: 150px;" />
+                                    </p:column>                            
+                                </p:dataTable>
+                                <h:panelGrid columns="3" style="width: 100%;">
+                                        <h:commandButton value="Добавить датчик" action="#{addClient.addSnmpClientToCurrent(rsp)}" style="margin: 5px; width: 150px;" />
+                                        <h:commandButton value="Сохранить" action="#{addClient.saveCurrent(rsp)}" style="margin: 5px;width: 150px;" />
+                                        <h:commandButton value="Отменить" action="addClient.xhtml?faces-redirect=true" style="margin: 5px;width: 150px;" />
+                                    </h:panelGrid>
+                                <f:facet name="footer">
+                                    <h:outputText value="#{rsp.address}:#{rsp.port}" />
+                                </f:facet>
+                            </p:panel>
+                        </c:forEach>
+                    </h:panelGrid>
+                </h:form>
+            </div>
+
+        </div>
+    </h:body>
+</html>
+

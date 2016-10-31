@@ -1,0 +1,45 @@
+#u110 .ui-accordion-header{
+    background: transparent!important;
+    color: white;
+    border: none;
+    box-shadow: none;
+}
+
+#u110 .ui-icon{
+    display: none;
+}
+
+#u110 .ui-accordion-content{
+    padding: 0px!important;
+    background: transparent;
+}
+
+#u110 .accordionTitle{
+    font-weight: normal;
+    letter-spacing: 0.7px;
+    text-decoration: none;
+    font-style: normal;
+    font-family: 'Roboto', sans-serif;
+    
+}
+
+#u110 .commandLink{
+    text-decoration: none;
+    color:white;
+    margin-left: 10px;
+}
+
+body{
+    font-family: 'Roboto', sans-serif;
+}
+
+.chart .jqplot-title{
+    color:white;
+    font-weight: normal;
+    letter-spacing: 0.7px;
+    text-decoration: none;
+    font-style: normal;
+    font-family: 'Roboto', sans-serif;
+    font-size: smaller;
+    white-space: nowrap;
+}
