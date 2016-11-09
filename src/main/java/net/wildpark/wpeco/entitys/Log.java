@@ -38,11 +38,13 @@ public class Log implements Serializable {
         this.message = message;
         this.ex = ex;
         this.loggerLevel = loggerLevel;
+        addedDate=new Date();
     }
 
     public Log(String message, LoggerLevel loggerLevel) {
         this.message = message;
         this.loggerLevel = loggerLevel;
+        addedDate=new Date();
     }
     
     

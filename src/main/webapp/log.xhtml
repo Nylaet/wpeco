@@ -1,0 +1,33 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html class="js html" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:comp="http://xmlns.jcp.org/jsf/composite/comp"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <comp:head />
+    </h:head>
+    <h:body>
+        <comp:navigationMenu activeIndex="2" />
+        <div id="viewPort" style="position: relative;width: 75%;left: 25%;top:100px;color: white;text-align: center;">
+            <p:dataTable var="log" value="#{logController.logs}" rows="10"
+                         paginator="true"
+                         paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                         rowsPerPageTemplate="10,30,50">
+                <p:column headerText="Дата">
+                    <h:outputText value="#{logController.getFormatedDate(log.addedDate)}" />
+                </p:column>
+                <p:column headerText="Сообщение">
+                    <h:outputText value="#{log.message}" />
+                </p:column>
+                <p:column headerText="Исключение">
+                    <h:outputText value="#{log.ex.message}" />
+                </p:column>
+                <p:column headerText="Уровень">
+                    <h:outputText value="#{log.loggerLevel.about}" />
+                </p:column>
+            </p:dataTable>
+        </div>
+    </h:body>
+</html>
+

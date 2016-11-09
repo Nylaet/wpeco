@@ -60,7 +60,16 @@
 
                         </h:panelGrid>
                     </h:form>
-                </p:tab>                
+                </p:tab>     
+                <p:tab title="Админ панель">
+                    <h:panelGrid columns="1">
+                        <h:form>
+                            <h:commandLink action="log.xhtml?faces-redirect=true" styleClass="commandLink">
+                                <h:outputText value="Логи" />
+                            </h:commandLink>
+                        </h:form>
+                    </h:panelGrid>
+                </p:tab>
             </p:accordionPanel>   
 
         </div>

@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 import java.util.Random;
+import javax.annotation.PostConstruct;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
 import net.wildpark.wpeco.support.DayViewModel;
@@ -42,6 +43,11 @@ public class IndexController implements Serializable {
     private List<MonthViewModel> monthViewModels = new ArrayList<>();
 
     public IndexController() {
+    }
+    
+    @PostConstruct
+    public void init(){
+        
     }
 
     public void calculateHeatSeason() {

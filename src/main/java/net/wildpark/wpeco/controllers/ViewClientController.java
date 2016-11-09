@@ -6,15 +6,18 @@
 package net.wildpark.wpeco.controllers;
 
 import javax.inject.Named;
-import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
+import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
+import javax.enterprise.context.SessionScoped;
+import javax.faces.context.FacesContext;
+import javax.servlet.http.HttpServletRequest;
 import net.wildpark.wpeco.entitys.DataHistory;
 import net.wildpark.wpeco.entitys.Log;
 import net.wildpark.wpeco.entitys.RemouteSensorPanel;
@@ -34,7 +37,7 @@ import org.primefaces.model.chart.LineChartSeries;
  * @author Panker-RDP
  */
 @Named(value = "viewClientController")
-@RequestScoped
+@SessionScoped
 public class ViewClientController implements Serializable {
 
     @EJB
@@ -44,6 +47,16 @@ public class ViewClientController implements Serializable {
     private List<RemouteSensorPanel> rsps=new ArrayList<>();
     
     public ViewClientController() {
+    }
+    
+    @PostConstruct
+    public void init(){
+    HttpServletRequest request = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
+        String ipAddress = request.getHeader("X-FORWARDED-FOR");
+        if (ipAddress == null) {
+            ipAddress = request.getRemoteAddr();
+        }
+        logFacade.create(new Log("Новый посетитель "+ipAddress,LoggerLevel.INFO));
     }
 
     public String getLastValue(SNMPClient client){
@@ -65,7 +78,7 @@ public class ViewClientController implements Serializable {
     public ChartModel getClientChart(SNMPClient client){
         LineChartModel lcm=new LineChartModel();
         lcm.setAnimate(false);
-        lcm.setTitle(client.getName()+": "+getLastValue(client)+" обновлено "+getDateUpdate(client));
+        lcm.setTitle(client.getName()+": "+getLastValue(client));
         lcm.addSeries(getRemateredSeries(client.getDataHistory()));
         Axis yAxis=getMinMaxY(lcm);
         return lcm;
@@ -90,8 +103,8 @@ public class ViewClientController implements Serializable {
         LineChartSeries lcs=new LineChartSeries();
         int median=20;
         if(dataHistory.size()>=median){
-            int startIndex=dataHistory.size()-median-1;
-            for(int i=startIndex,y=1;i<dataHistory.size()-1;i++,y++){
+            int startIndex=dataHistory.size()-median;
+            for(int i=startIndex,y=1;i<dataHistory.size();i++,y++){
                 lcs.set(y,dataHistory.get(i).getValue());
             }
         }else{

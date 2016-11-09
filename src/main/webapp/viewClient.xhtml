@@ -19,11 +19,14 @@
                         <p:poll interval="60" update="info" />
                         <h:panelGrid columns="2" id="info">
                             <f:facet name="header">
-                                <h:outputText value="#{rsp.title} #{rsp.snmpClient.size()} датчиков" style="margin: 10px;padding-bottom: 5px;font-size: larger;"/>
+                                <h:outputText value="#{rsp.title} #{rsp.snmpClient.size()} датчиков. Обновлено #{viewClientController.getDateUpdate(rsp.snmpClient.get(0))}" style="margin: 10px;padding-bottom: 5px;font-size: larger;"/>
                             </f:facet>
-                            <p:dataList value="#{rsp.snmpClient}" var="client">                                
+                            <p:dataGrid columns="2" value="#{rsp.snmpClient}" var="client">                                
                                 <p:chart id="chart" type="line" model="#{viewClientController.getClientChart(client)}" style="width: 300px;height: 150px;" styleClass="chart" />                            
-                            </p:dataList>
+                            </p:dataGrid> 
+                            <f:facet name="footer">
+                                <h:outputText value="UpTime: #{addClient.getUpTime(rsp)}" />
+                            </f:facet>
                         </h:panelGrid>
                     </p:carousel>
                 </h:form>

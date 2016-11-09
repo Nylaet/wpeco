@@ -87,13 +87,11 @@
                                     </p:column>                            
                                 </p:dataTable>
                                 <h:panelGrid columns="3" style="width: 100%;">
-                                        <h:commandButton value="Добавить датчик" action="#{addClient.addSnmpClientToCurrent(rsp)}" style="margin: 5px; width: 150px;" />
-                                        <h:commandButton value="Сохранить" action="#{addClient.saveCurrent(rsp)}" style="margin: 5px;width: 150px;" />
-                                        <h:commandButton value="Отменить" action="addClient.xhtml?faces-redirect=true" style="margin: 5px;width: 150px;" />
-                                    </h:panelGrid>
-                                <f:facet name="footer">
-                                    <h:outputText value="#{rsp.address}:#{rsp.port}" />
-                                </f:facet>
+                                    <h:commandButton value="Добавить датчик" action="#{addClient.addSnmpClientToCurrent(rsp)}" style="margin: 5px; width: 150px;" />
+                                    <h:commandButton value="Сохранить" action="#{addClient.saveCurrent(rsp)}" style="margin: 5px;width: 150px;" />
+                                    <h:commandButton value="Отменить" action="addClient.xhtml?faces-redirect=true" style="margin: 5px;width: 150px;" />
+                                </h:panelGrid>
+
                             </p:panel>
                         </c:forEach>
                     </h:panelGrid>
