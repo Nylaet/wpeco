@@ -16,6 +16,7 @@ import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
 import javax.enterprise.context.SessionScoped;
+import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpServletRequest;
 import net.wildpark.wpeco.entitys.DataHistory;
@@ -37,7 +38,7 @@ import org.primefaces.model.chart.LineChartSeries;
  * @author Panker-RDP
  */
 @Named(value = "viewClientController")
-@SessionScoped
+@RequestScoped
 public class ViewClientController implements Serializable {
 
     @EJB
