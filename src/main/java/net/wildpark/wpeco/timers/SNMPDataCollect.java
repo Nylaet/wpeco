@@ -7,6 +7,9 @@ package net.wildpark.wpeco.timers;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.ejb.Schedule;
 import javax.ejb.Singleton;
@@ -43,11 +46,12 @@ public class SNMPDataCollect {
     LogFacade logFacade;
     @EJB
     RemouteSensorPanelFacade rspf;
-
+    Snmp snmp;
+    PDU pdu;
     private boolean run = false;
 
     @Schedule(dayOfWeek = "*", hour = "*", minute = "*")
-
+    
     public void myTimer() {
         try {
             if (run) {
@@ -80,11 +84,9 @@ public class SNMPDataCollect {
         }
     }
 
-    private static class SnmpRead {
+    private class SnmpRead {
 
-        TransportMapping transportMapping;
-        Snmp snmp;
-        PDU pdu;
+        
 
         public String getTestSnmpReceiving(int snmpVersion, int retry, String community, String host, String request) throws IOException {
             //Setting Up pdu
@@ -101,16 +103,20 @@ public class SNMPDataCollect {
             communityTarget.setTimeout(1000);
 
             //Sending request
-            snmp = new Snmp(new DefaultUdpTransportMapping());
+            DefaultUdpTransportMapping transportMapping=new DefaultUdpTransportMapping();
+            Snmp snmp=new  Snmp(transportMapping);
             snmp.listen();
 
             ResponseEvent event = snmp.send(pdu, communityTarget);
             if (event.getResponse() == null) {
+                
                 snmp.close();
+                transportMapping.close();
                 return ("Timeout snmp");
             } else {
                 String value = event.getResponse().getVariable(new OID(request)).toString();
                 snmp.close();
+                transportMapping.close();
                 return value;
             }
 

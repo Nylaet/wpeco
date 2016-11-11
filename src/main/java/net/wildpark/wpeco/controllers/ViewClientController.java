@@ -56,8 +56,7 @@ public class ViewClientController implements Serializable {
         String ipAddress = request.getHeader("X-FORWARDED-FOR");
         if (ipAddress == null) {
             ipAddress = request.getRemoteAddr();
-        }
-        logFacade.create(new Log("Новый посетитель "+ipAddress,LoggerLevel.INFO));
+        }        
     }
 
     public String getLastValue(SNMPClient client){

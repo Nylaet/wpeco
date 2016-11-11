@@ -153,16 +153,20 @@ public class AddClientController implements Serializable {
         communityTarget.setTimeout(1000);
         try {
             //Sending request
-            snmp = new Snmp(new DefaultUdpTransportMapping());
+            DefaultUdpTransportMapping transport=new DefaultUdpTransportMapping();
+            snmp = new Snmp(transport);
             snmp.listen();
 
             ResponseEvent event = snmp.send(pdu, communityTarget);
             if (event.getResponse() == null) {
                 snmp.close();
+                transport.close();
                 return ("Timeout snmp");
             } else {
                 String value = event.getResponse().getVariable(new OID(request)).toString();
                 System.out.println(value);
+                snmp.close();
+                transport.close();
                 return value;
             }
         } catch (IOException ex) {
