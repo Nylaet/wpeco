@@ -6,6 +6,7 @@
 package net.wildpark.wpeco.entitys;
 
 import java.io.Serializable;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -61,6 +62,10 @@ public class DataHistory implements Serializable {
         this.value = value;
     }
     
+    public String getDateAsString(){
+        SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd HH:mm");
+        return sdf.format(addedDate);
+    }
     
     
     @Override

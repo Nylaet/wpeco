@@ -147,7 +147,7 @@ public class AddClientController implements Serializable {
         Address address = GenericAddress.parse(host);
         CommunityTarget communityTarget = new CommunityTarget();
         communityTarget.setAddress(address);
-        communityTarget.setCommunity(new OctetString("public"));
+        communityTarget.setCommunity(new OctetString("wpeco"));
         communityTarget.setVersion(snmpVersion);
         communityTarget.setRetries(3);
         communityTarget.setTimeout(1000);
